@@ -24,13 +24,13 @@ export const App = () => {
 
     switch (name) {
       case 'good':
-        setGoodFeedback(good + 1);
+        setGoodFeedback(prevState => prevState + 1);
         break;
       case 'neutral':
-        setNeutralFeedback(neutral + 1);
+        setNeutralFeedback(prevState => prevState + 1);
         break;
       case 'bad':
-        setBagFeedback(bad + 1);
+        setBagFeedback(prevState => prevState + 1);
         break;
       default:
         return;
