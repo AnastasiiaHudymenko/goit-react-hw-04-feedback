@@ -12,9 +12,12 @@ export const App = () => {
 
   useEffect(() => {
     const total = good + neutral + bad;
-    const percentage = Math.round((good / total) * 100);
+    if (total > 0) {
+      const percentage = Math.round((good / total) * 100);
+      setPercentage(percentage);
+    }
+
     setTotal(total);
-    setPercentage(percentage);
   }, [good, neutral, bad]);
 
   const handlIncrementReview = event => {
