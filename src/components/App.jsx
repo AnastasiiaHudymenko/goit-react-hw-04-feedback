@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Section } from './Feedback/Section/Section';
 import { FeedbackOptions } from './Feedback/FeedbackOptions/FeedbackOptions';
 import { Statistics } from './Feedback/Statistics/Statistics';
@@ -7,17 +7,15 @@ export const App = () => {
   const [good, setGoodFeedback] = useState(0);
   const [neutral, setNeutralFeedback] = useState(0);
   const [bad, setBagFeedback] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [percentage, setPercentage] = useState(0);
 
-  const countTotalFeedback = () => {
-    return good + neutral + bad;
-  };
-
-  const countPositiveFeedbackPercentage = () => {
-    if (!good && !neutral && !bad) {
-      return 0;
-    }
-    return Math.round((good / countTotalFeedback()) * 100);
-  };
+  useEffect(() => {
+    const total = good + neutral + bad;
+    const percentage = Math.round((good / total) * 100);
+    setTotal(total);
+    setPercentage(percentage);
+  }, [good, neutral, bad]);
 
   const handlIncrementReview = event => {
     const { name } = event.target;
@@ -57,8 +55,8 @@ export const App = () => {
           good={good}
           neutral={neutral}
           bad={bad}
-          total={countTotalFeedback}
-          positivePercentage={countPositiveFeedbackPercentage}
+          total={total}
+          positivePercentage={percentage}
         />
       </Section>
     </div>

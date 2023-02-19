@@ -27,12 +27,10 @@ export const Statistics = ({
             <p className={css.desc}>Bad: {bad}</p>
           </li>
           <li>
-            <p className={css.desc}>Total: {total()}</p>
+            <p className={css.desc}>Total: {total}</p>
           </li>
           <li>
-            <p className={css.desc}>
-              Positive feedback:{positivePercentage()}%
-            </p>
+            <p className={css.desc}>Positive feedback:{positivePercentage}%</p>
           </li>
         </ul>
       )}
@@ -44,6 +42,6 @@ Statistics.propTypes = {
   good: PropTypes.number.isRequired,
   neutral: PropTypes.number.isRequired,
   bad: PropTypes.number.isRequired,
-  total: PropTypes.func.isRequired,
-  positivePercentage: PropTypes.func.isRequired,
+  total: PropTypes.number.isRequired,
+  positivePercentage: PropTypes.number.isRequired,
 };
